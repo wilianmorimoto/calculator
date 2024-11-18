@@ -1,0 +1,187 @@
+:root {
+	--bg-main: hsl(222, 26%, 31%);
+	--bg-container: hsl(223, 31%, 20%);
+	--bg-visor: hsl(224, 36%, 15%);
+	--bg-key-special: hsl(225, 21%, 49%);
+	--shadow-key-special: hsl(224, 28%, 35%);
+	--bg-key-equal: hsl(6, 63%, 50%);
+	--shadow-key-equal: hsl(6, 70%, 34%);
+	--bg-key-all: hsl(30, 25%, 89%);
+	--shadow-key-all: hsl(28, 16%, 65%);
+	--text-button: hsl(221, 14%, 31%);
+	--text-button-light: hsl(0, 0%, 100%);
+	--text-header-visor: hsl(0, 0%, 100%);
+}
+
+:root:has(.t2) {
+	--bg-main: hsl(0, 0%, 90%);
+	--bg-container: hsl(0, 5%, 81%);
+	--bg-visor: hsl(0, 0%, 83%);
+	--bg-key-special: hsl(185, 42%, 37%);
+	--shadow-key-special: hsl(185, 58%, 25%);
+	--bg-key-equal: hsl(25, 100%, 47%);
+	--shadow-key-equal: hsl(25, 100%, 35%);
+	--bg-key-all: hsl(45, 7%, 89%);
+	--shadow-key-all: hsl(35, 11%, 61%);
+	--text-button: hsl(60, 10%, 19%);
+	--text-button-light: hsl(0, 0%, 100%);
+	--text-header-visor: hsl(60, 10%, 19%);
+}
+
+:root:has(.t3) {
+	--bg-main: #e87595;
+	--bg-container: #f29ca3;
+	--bg-visor: #f5b3b8;
+	--bg-key-special: #de4d86;
+	--shadow-key-special: #7e2c4d;
+	--bg-key-equal: #84e6f8;
+	--shadow-key-equal: #48808a;
+	--bg-key-all: #f7cacd;
+	--shadow-key-all: #947779;
+	--text-button: #fff;
+	--text-button-light: hsl(0, 0%, 100%);
+	--text-header-visor: hsl(0, 0%, 100%);
+}
+
+:root > body {
+	background: var(--bg-main);
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* Header */
+header {
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+	align-items: center;
+	color: var(--text-header-visor);
+}
+
+.theme {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	font-size: 0.75rem;
+}
+
+.toggle {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	row-gap: 0.25rem;
+	text-align: center;
+}
+
+.slider {
+	grid-column-start: 1;
+	grid-column-end: 4;
+	background: var(--bg-container);
+	width: 50px;
+	height: 1.2rem;
+	border-radius: 0.6rem;
+	cursor: pointer;
+	position: relative;
+	transition: filter 0.2s;
+}
+
+.slider:hover .circle {
+	filter: brightness(1.1);
+}
+
+.circle {
+	position: absolute;
+	width: 0.7rem;
+	height: 0.7rem;
+	background: var(--bg-key-equal);
+	border-radius: 50%;
+	transform: translateY(-50%);
+	top: 50%;
+	left: 0.25rem;
+	transition: left 0.25s;
+}
+
+.circle.t2 {
+	left: calc(50% - 0.35rem);
+}
+
+.circle.t3 {
+	left: calc(100% - 0.95rem);
+}
+
+/* Visor */
+.visor {
+	background: var(--bg-visor);
+	color: var(--text-header-visor);
+	padding: 1.5rem 1rem;
+	border-radius: 0.5rem;
+	text-align: right;
+	font-size: 2.5rem;
+	height: 116px;
+	max-width: 364px;
+}
+
+.visor > p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.visor > :first-child {
+	font-size: 1rem;
+	opacity: 0.8;
+	margin-bottom: 1rem;
+}
+
+/* Buttons */
+main {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	padding: 1rem;
+	background: var(--bg-container);
+	border-radius: 0.5rem;
+	gap: 1rem;
+}
+
+main > button {
+	border-radius: 0.5rem;
+	border: 0;
+	outline: 0;
+	padding: 1rem;
+	font-size: 1.5rem;
+	background: var(--bg-key-all);
+	color: var(--text-button);
+	box-shadow: inset 0 -3px var(--shadow-key-all);
+	cursor: pointer;
+	transition: filter 0.1s, box-shadow 0.01s;
+}
+
+main > button:hover {
+	filter: brightness(1.1);
+}
+
+main > button:active {
+	filter: brightness(1);
+	box-shadow: inset 0 3px var(--bg-container);
+}
+
+button.special {
+	background: var(--bg-key-special);
+	color: var(--text-button-light);
+	box-shadow: inset 0 -3px var(--shadow-key-special);
+}
+
+main > :last-child {
+	background: var(--bg-key-equal);
+	color: var(--text-button-light);
+	grid-column-start: 3;
+	grid-column-end: 5;
+	box-shadow: inset 0 -3px var(--shadow-key-equal);
+}
+
+main > :nth-child(17) {
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
